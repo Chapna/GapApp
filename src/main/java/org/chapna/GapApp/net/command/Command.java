@@ -25,11 +25,11 @@ public class Command {
 		this.destID = destID;
 		this.srcID = srcID;
 		this.data = data;
-		
+
 		if (data == null)
 			size = 0;
 		else
-			size = data.length()
+			size = data.length();
 	}
 
 	public String getVerb(){
@@ -39,8 +39,6 @@ public class Command {
 	public String getDestID(){
 		return destID;
 	}
-
-}
 
 	public String getSrcID(){
 		return srcID;

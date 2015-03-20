@@ -5,22 +5,21 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.chapna.GapApp.*;
-import org.chapna.GapApp.coomands.Command;
-import org.chapna.GapApp.coomands.LeJIn;
-import org.chapna.GapApp.coomands.MessageCmd;
-import org.chapna.GapApp.coomands.SignIn;
+import org.chapna.GapApp.instructions.Instruction;
+import org.chapna.GapApp.instructions.LeJIn;
+import org.chapna.GapApp.instructions.MessageCmd;
+import org.chapna.GapApp.instructions.SignIn;
 
-public class Client extends User {
+public class Me extends User {
 
-	static int count = 0;
+	public static int count = 0;
 	public Socket serverSocket;
-	ReceiveThread rt;
-	HashMap<String, Chat> chatMap = new HashMap<String, Chat>();
+	private ReceiveThread rt;
+	private HashMap<String, Chat> chatMap = new HashMap<String, Chat>();
 	private FrontFrame frame;
 	private boolean signIn;
 
-	Client(String name, String ID, Socket serverSocket){
+	public Me(String name, String ID, Socket serverSocket){
 		super(name, ID);
 		if (count == 0) {
 			this.serverSocket = serverSocket;
@@ -78,7 +77,7 @@ public class Client extends User {
 		frame.setVisible(true);
 	}
 
-	public void sendToServer(Command cmd) throws IOException{
+	public void sendToServer(Instruction cmd) throws IOException{
 
 		String msg;
 
