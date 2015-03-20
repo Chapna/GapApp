@@ -1,27 +1,32 @@
 package org.chapna.GapApp;
 
-public class Command {
+public abstract class Command {
 
 	private Client sender;
 	private String verb;
-	private Chat receiver; 
-	
-	public Chat getReceiver() {
+	private Chat receiver;
+
+	public Chat getReceiver(){
 		return receiver;
 	}
-	public void setReceiver(Chat receiver) {
+
+	public void setReceiver(Chat receiver){
 		this.receiver = receiver;
 	}
-	Client getSender() {
+
+	Client getSender(){
 		return sender;
 	}
-	public void setSender(Client sender) {
+
+	public void setSender(Client sender){
 		this.sender = sender;
 	}
-	String getVerb() {
+
+	String getVerb(){
 		return verb;
 	}
-	public void setVerb(String verb) {
+
+	public void setVerb(String verb){
 		this.verb = verb;
 	}
 }

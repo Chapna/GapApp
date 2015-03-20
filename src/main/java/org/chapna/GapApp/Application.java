@@ -2,11 +2,10 @@ package org.chapna.GapApp;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
-public class Aplication {
+public class Application {
 
-	public static void main(String[] args) throws UnknownHostException, IOException{
+	public static void main(String[] args) throws IOException{
 
 		Client me = new Client("mrma95", "chapal", new Socket("192.168.169.199", 1373));
 		me.signIn("pass");

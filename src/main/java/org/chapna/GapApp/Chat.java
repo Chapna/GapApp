@@ -1,81 +1,72 @@
 package org.chapna.GapApp;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Chat {
 
-	private boolean frameIsOpen = false;
 	int isThereNew = 0;
 	ChatFrame frame;
+	private boolean frameIsOpen = false;
 	private String iD;
 	private String name;
 	private boolean isGroup;
 	private HashMap<String, User> membMap;
 	private ArrayList<Message> messages;
 
-	public Chat(String ID, String name) {
+	public Chat(String ID, String name){
 		this.name = name;
 		this.iD = ID;
-		membMap = new HashMap<>();
+		membMap = new HashMap<String, User>();
 	}
 
-	public boolean isFrameIsOpen() {
+	public boolean isFrameIsOpen(){
 		return frameIsOpen;
 	}
 
-	public void setFrameIsOpen(boolean frameIsOpen) {
+	public void setFrameIsOpen(boolean frameIsOpen){
 		this.frameIsOpen = frameIsOpen;
 	}
 
-	public HashMap<String, User> getMembers() {
+	public HashMap<String, User> getMembers(){
 		return membMap;
 	}
 
-	public ArrayList<User> getMembersList() {
+	public ArrayList<User> getMembersList(){
 		return new ArrayList<User>(membMap.values());
 	}
 
-	public String getID() {
+	public String getID(){
 		return iD;
 	}
 
-	public void setID(String iD) {
+	public void setID(String iD){
 		this.iD = iD;
 	}
 
-	public String getName() {
+	public String getName(){
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name){
 		this.name = name;
 	}
 
-	void addToMembers(User user) {
+	void addToMembers(User user){
 
 		membMap.put(user.getID(), user);
 	}
 
-	void removeFromMembers(User user) {
-
-		membMap.replace(user.getID(), user);
-	}
-
-	boolean isMember(User user) {
+	boolean isMember(User user){
 
 		if (membMap.containsValue(user))
 			return true;
 		return false;
 	}
 
-	void setIsGroup() {
+	void setIsGroup(){
 
 		if (membMap.size() > 2)
 			isGroup = true;
@@ -88,23 +79,23 @@ public class Chat {
 		}
 	}
 
-	boolean getIsGroup() {
+	boolean getIsGroup(){
 		return isGroup;
 	}
 
-	public int getIsThereNew() {
+	public int getIsThereNew(){
 		return isThereNew;
 	}
 
-	public void setIsThereNew(int isThereNew) {
+	public void setIsThereNew(int isThereNew){
 		this.isThereNew = isThereNew;
 	}
 
-	public ArrayList<Message> getMessages() {
+	public ArrayList<Message> getMessages(){
 		return messages;
 	}
-	
-	void writeMessageInFile(String senderID, String msg) throws IOException {
+
+	void writeMessageInFile(String senderID, String msg) throws IOException{
 		File file = new File(iD);
 
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(
@@ -125,7 +116,7 @@ public class Chat {
 
 	}
 
-	void readFile() throws IOException {
+	void readFile() throws IOException{
 
 		File file = new File(iD);
 		if (!file.exists()) {

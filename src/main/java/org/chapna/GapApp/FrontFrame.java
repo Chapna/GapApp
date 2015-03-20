@@ -14,10 +14,10 @@ public class FrontFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	public FrontFrame(Client user){
+	public FrontFrame(final Client user){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		setTitle(user.name);
+		setTitle(user.getName());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,7 +52,7 @@ public class FrontFrame extends JFrame {
 		scrollPane.setBounds(10, 58, 313, 192);
 		contentPane.add(scrollPane);
 
-		JList<String> list = new JList<String>(listV);
+		final JList<String> list = new JList<String>(listV);
 		scrollPane.setViewportView(list);
 
 		JButton btnSelect = new JButton("Select");

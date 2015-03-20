@@ -8,15 +8,14 @@ import java.util.HashMap;
 
 public class Client extends User {
 
-	private FrontFrame frame;
 	static int count = 0;
 	Socket serverSocket;
-	private boolean signIn;
 	ReceiveThread rt;
+	HashMap<String, Chat> chatMap = new HashMap<String, Chat>();
+	private FrontFrame frame;
+	private boolean signIn;
 
-	HashMap<String, Chat> chatMap = new HashMap<>();
-
-	Client(String name, String ID, Socket serverSocket) {
+	Client(String name, String ID, Socket serverSocket){
 		super(name, ID);
 		if (count == 0) {
 			this.serverSocket = serverSocket;
@@ -27,67 +26,59 @@ public class Client extends User {
 		}
 	}
 
-	void signIn(String pass) throws IOException {
+	void signIn(String pass) throws IOException{
 		signIn = true;
 
 		SignIn si = new SignIn(pass, this);
 		sendToServer(si);
 	}
 
-	void signOut() {
+	void signOut(){
 		signIn = false;
 		// TODO
 	}
 
-	boolean getSignIn() {
+	boolean getSignIn(){
 		return signIn;
 	}
 
-	public FrontFrame getFrame() {
+	public FrontFrame getFrame(){
 		return frame;
 	}
 
-	public void setFrame(FrontFrame frame) {
+	public void setFrame(FrontFrame frame){
 		this.frame = frame;
 	}
 
-	public String getID() {
-		return ID;
-	}
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	void addToChat(Chat chat) {
+	void addToChat(Chat chat){
 		chatMap.put(chat.getID(), chat);
 	}
 
-	HashMap<String, Chat> getChats() {
+	HashMap<String, Chat> getChats(){
 		return chatMap;
 	}
 
-	ArrayList<Chat> getChatList() {
+	ArrayList<Chat> getChatList(){
 		return new ArrayList<Chat>(chatMap.values());
 	}
 
-	public void openFrame(Chat chat) throws IOException {
+	public void openFrame(Chat chat) throws IOException{
 		chat.frame = new ChatFrame(this, chat);
 		chat.frame.setVisible(true);
 		chat.setFrameIsOpen(true);
 	}
 
-	public void openFront() {
+	public void openFront(){
 		frame = new FrontFrame(this);
 		frame.setVisible(true);
 	}
 
-	public void sendToServer(Command cmd) throws IOException {
+	public void sendToServer(Command cmd) throws IOException{
 
 		String msg = "";
 
 		if (cmd.getVerb().equals("send")) {
-			msg = cmd.getVerb() + " " + cmd.getReceiver().getID() + " " + ID
+			msg = cmd.getVerb() + " " + cmd.getReceiver().getID() + " " + getID()
 					+ " " + ((MessageCmd) cmd).getData().getBytes().length
 					+ "\n" + ((MessageCmd) cmd).getData();
 		} else {
@@ -97,9 +88,9 @@ public class Client extends User {
 			} else {
 				msg = cmd.getVerb() + " " + cmd.getReceiver().getID() + " "
 						+ ((LeJIn) cmd).getUser().getID() + " 0"; // TODO send
-																	// senderID
-																	// to
-																	// server
+				// senderID
+				// to
+				// server
 			}
 		}
 
@@ -108,10 +99,10 @@ public class Client extends User {
 		out.flush();
 	}
 
-	void listener(String firstLine, String body) throws IOException { // TODO
-																		// handle
-																		// close
-																		// verb
+	void listener(String firstLine, String body) throws IOException{ // TODO
+		// handle
+		// close
+		// verb
 
 		String[] fLH = firstLine.split(" ");
 
