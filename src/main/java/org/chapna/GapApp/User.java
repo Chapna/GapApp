@@ -2,22 +2,19 @@ package org.chapna.GapApp;
 
 public class User {
 
-	String name;
-	String ID;
-	
-	User(String name, String ID) {
-	
+	private String name;
+	private String ID;
+
+	User(String name, String ID){
 		this.name = name;
 		this.ID = ID;
 	}
-	
-	String getName() {
+
+	String getName(){
 		return name;
 	}
-	void setName(String name) {
-		this.name = name;
-	}
-	String getID() {
+
+	String getID(){
 		return ID;
 	}
 }
