@@ -1,6 +1,9 @@
-package org.chapna.GapApp;
+package org.chapna.GapApp.instructions;
 
 import java.io.IOException;
+import org.chapna.GapApp.Chat;
+import org.chapna.GapApp.Client;
+import org.chapna.GapApp.User;
 
 public class LeJIn extends Command {
 

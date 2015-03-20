@@ -1,6 +1,7 @@
-package org.chapna.GapApp;
+package org.chapna.GapApp.instructions;
 
 import java.io.IOException;
+import org.chapna.GapApp.Client;
 
 public class SignIn extends Command {
 

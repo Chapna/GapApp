@@ -5,11 +5,16 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.chapna.GapApp.*;
+import org.chapna.GapApp.coomands.Command;
+import org.chapna.GapApp.coomands.LeJIn;
+import org.chapna.GapApp.coomands.MessageCmd;
+import org.chapna.GapApp.coomands.SignIn;
 
 public class Client extends User {
 
 	static int count = 0;
-	Socket serverSocket;
+	public Socket serverSocket;
 	ReceiveThread rt;
 	HashMap<String, Chat> chatMap = new HashMap<String, Chat>();
 	private FrontFrame frame;
@@ -33,7 +38,7 @@ public class Client extends User {
 		sendToServer(si);
 	}
 
-	void signOut(){
+	public void signOut(){
 		signIn = false;
 		// TODO
 	}
@@ -58,7 +63,7 @@ public class Client extends User {
 		return chatMap;
 	}
 
-	ArrayList<Chat> getChatList(){
+	public ArrayList<Chat> getChatList(){
 		return new ArrayList<Chat>(chatMap.values());
 	}
 
@@ -75,7 +80,7 @@ public class Client extends User {
 
 	public void sendToServer(Command cmd) throws IOException{
 
-		String msg = "";
+		String msg;
 
 		if (cmd.getVerb().equals("send")) {
 			msg = cmd.getVerb() + " " + cmd.getReceiver().getID() + " " + getID()
@@ -99,10 +104,7 @@ public class Client extends User {
 		out.flush();
 	}
 
-	void listener(String firstLine, String body) throws IOException{ // TODO
-		// handle
-		// close
-		// verb
+	public void listener(String firstLine, String body) throws IOException{ // TODO
 
 		String[] fLH = firstLine.split(" ");
 
