@@ -1,4 +1,4 @@
-package client;
+package org.chapna.GapApp;
 
 import java.io.IOException;
 

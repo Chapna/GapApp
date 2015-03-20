@@ -1,4 +1,4 @@
-package client;
+package org.chapna.GapApp;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
