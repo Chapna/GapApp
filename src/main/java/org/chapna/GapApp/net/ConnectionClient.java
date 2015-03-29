@@ -14,18 +14,32 @@
 package org.chapna.GapApp.net;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.Socket;
-import org.chapna.GapApp.net.receiver.DefaultReceiver;
+import org.chapna.GapApp.net.command.Command;
+import org.chapna.GapApp.net.receiver.ConnectionReceiver;
 import org.chapna.GapApp.net.receiver.Receiver;
 
-public final class Client {
+public final class ConnectionClient {
+
+	private static Socket socket;
 
 	public static void init(String ip, int port){
 		try {
-			Socket socket = new Socket(ip, port);
-			Receiver receiver = new DefaultReceiver();
+			socket = new Socket(ip, port);
+			Receiver receiver = new ConnectionReceiver();
 			receiver.setSocket(socket);
 			new Thread(receiver);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public synchronized static void send(Command cmd){
+		try {
+			PrintWriter writer = new PrintWriter(socket.getOutputStream());
+			writer.print(cmd.toString());
+			writer.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

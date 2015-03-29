@@ -1,20 +1,20 @@
-package org.chapna.GapApp;
+package org.chapna.GapApp.domain;
 
 public class User {
 
 	private String name;
 	private String ID;
 
-	User(String name, String ID){
+	public User(String name, String ID){
 		this.name = name;
 		this.ID = ID;
 	}
 
-	String getName(){
+	public String getName(){
 		return name;
 	}
 
-	String getID(){
+	public String getID(){
 		return ID;
 	}
 }

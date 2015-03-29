@@ -3,13 +3,14 @@ package org.chapna.GapApp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import org.chapna.GapApp.domain.Me;
 
 public class ReceiveThread extends Thread {
 
-	private Client client;
+	private Me me;
 
-	public ReceiveThread(Client user) {
-		this.client = user;
+	public ReceiveThread(Me user) {
+		this.me = user;
 	}
 
 	public void run() {
@@ -17,7 +18,7 @@ public class ReceiveThread extends Thread {
 
 		try {
 			in = new BufferedReader(new InputStreamReader(
-					client.serverSocket.getInputStream()));
+					me.serverSocket.getInputStream()));
 			while (true) {
 
 				int number = 0;
@@ -31,7 +32,7 @@ public class ReceiveThread extends Thread {
 
 				String body = new String(charArr);
 
-				client.listener(firstLine, body);
+				me.listener(firstLine, body);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

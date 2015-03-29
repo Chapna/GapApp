@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.chapna.GapApp.net.command.Command;
+import org.chapna.GapApp.net.command.ConnectionCommand;
 
-public class DefaultReceiver implements Receiver {
+public class ConnectionReceiver implements Receiver {
 	private Socket socket;
-	private List<Command> commands;
+	private List<ConnectionCommand> commands;
 
-	public DefaultReceiver(){
-		commands = new ArrayList<Command>();
+	public ConnectionReceiver(){
+		commands = new ArrayList<ConnectionCommand>();
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class DefaultReceiver implements Receiver {
 					buffer.append(scanner.nextByte());
 				}
 
-				commands.add(new Command(verb, destID, srcID, buffer.toString()));
+				commands.add(new ConnectionCommand(verb, destID, srcID, buffer.toString()));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

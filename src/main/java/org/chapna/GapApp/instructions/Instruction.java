@@ -1,4 +1,4 @@
 package org.chapna.GapApp.instructions;
 
-public interface Instruction {
+public interface Instruction extends Runnable {
 }

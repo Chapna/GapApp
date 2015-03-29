@@ -8,6 +8,9 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import org.chapna.GapApp.instructions.MessageCmd;
+import org.chapna.GapApp.domain.Me;
+import org.chapna.GapApp.domain.User;
 
 public class ChatFrame extends JFrame {
 
@@ -22,7 +25,7 @@ public class ChatFrame extends JFrame {
 	 *
 	 * @throws IOException
 	 */
-	public ChatFrame(final Client sender, final Chat chat) throws IOException{
+	public ChatFrame(final Me sender, final Chat chat) throws IOException{
 		this.chat = chat;
 		setTitle(chat.getName());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -8,13 +8,14 @@ import java.io.IOException;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import org.chapna.GapApp.domain.Me;
 
 public class FrontFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 
-	public FrontFrame(final Client user){
+	public FrontFrame(final Me user){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setTitle(user.getName());

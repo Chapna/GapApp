@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import org.chapna.GapApp.domain.User;
 
 public class Chat {
 
@@ -95,7 +96,7 @@ public class Chat {
 		return messages;
 	}
 
-	void writeMessageInFile(String senderID, String msg) throws IOException{
+	public void writeMessageInFile(String senderID, String msg) throws IOException{
 		File file = new File(iD);
 
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(

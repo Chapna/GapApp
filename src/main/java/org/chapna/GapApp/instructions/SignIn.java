@@ -1,25 +1,16 @@
 package org.chapna.GapApp.instructions;
 
-import java.io.IOException;
-import org.chapna.GapApp.Client;
+public class SignIn implements Instruction {
 
-public class SignIn extends Command {
+	private String username;
+	private String password;
 
-	private String pass;
-
-	public SignIn(String pass, Client client) throws IOException{
-		if (client.getSignIn()) {
-			setVerb("signin");
-		} else {
-			setVerb("signout");
-		}
-		this.pass = pass;
-		setSender(client);
+	public SignIn(String pass, String user){
+		password = pass;
+		username = user;
 	}
 
-	public String getPass(){
-		String pass = this.pass;
-		this.pass = null;
-		return pass;
+	@Override
+	public void run(){
 	}
 }

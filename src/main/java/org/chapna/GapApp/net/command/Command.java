@@ -13,24 +13,18 @@
 
 package org.chapna.GapApp.net.command;
 
-public class Command {
+public abstract class Command {
 	private String verb;
 	private String destID;
 	private String srcID;
-	private int size;
-	private String data;
 
-	public Command(String verb, String destID, String srcID, String data){
+	public Command(String verb, String destID, String srcID){
 		this.verb = verb;
 		this.destID = destID;
 		this.srcID = srcID;
-		this.data = data;
-
-		if (data == null)
-			size = 0;
-		else
-			size = data.length();
 	}
+
+	abstract public String toString();
 
 	public String getVerb(){
 		return verb;
@@ -42,14 +36,5 @@ public class Command {
 
 	public String getSrcID(){
 		return srcID;
-	}
-
-
-	public int getSize(){
-		return size;
-	}
-
-	public String getData(){
-		return data;
 	}
 }
