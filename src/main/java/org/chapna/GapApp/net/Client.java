@@ -20,26 +20,28 @@ import org.chapna.GapApp.net.command.Command;
 import org.chapna.GapApp.net.receiver.ConnectionReceiver;
 import org.chapna.GapApp.net.receiver.Receiver;
 
-public final class ConnectionClient {
+public final class Client {
 
-	private static Socket socket;
+	private static Socket clientSocket;
 
 	public static void init(String ip, int port){
 		try {
-			socket = new Socket(ip, port);
+			clientSocket = new Socket(ip, port);
 			Receiver receiver = new ConnectionReceiver();
-			receiver.setSocket(socket);
+			receiver.setSocket(clientSocket);
 			new Thread(receiver);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public synchronized static void send(Command cmd){
+	public synchronized static void send(Command cmd, boolean forDB){
 		try {
-			PrintWriter writer = new PrintWriter(socket.getOutputStream());
-			writer.print(cmd.toString());
-			writer.flush();
+			if (!forDB) {
+				PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
+				writer.print(cmd.toString());
+				writer.flush();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

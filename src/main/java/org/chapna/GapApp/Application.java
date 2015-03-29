@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.net.Socket;
 import org.chapna.GapApp.domain.Me;
 import org.chapna.GapApp.domain.User;
-import org.chapna.GapApp.net.ConnectionClient;
+import org.chapna.GapApp.net.Client;
 
 public class Application {
 
 
 	public static void main(String[] args) throws IOException{
-		ConnectionClient.init("127.0.0.1", 1373);
+		Client.init("127.0.0.1", 1373);
 		Me me = new Me("mrma95", "chapal", new Socket("127.0.0.1", 1373));
 		me.signIn("pass");
 		User user = new User("navid", "msk");
