@@ -8,7 +8,6 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import org.chapna.GapApp.instructions.MessageCmd;
 import org.chapna.GapApp.domain.Me;
 import org.chapna.GapApp.domain.User;
 
